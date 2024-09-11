@@ -1,0 +1,9 @@
+FROM python:3.9-slim
+
+RUN pip install easyocr flask
+
+# Create Flask API
+COPY ./app /app
+WORKDIR /app
+
+CMD ["python", "app.py"]
