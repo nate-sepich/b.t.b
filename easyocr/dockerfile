@@ -1,9 +1,45 @@
-FROM python:3.9-slim
+FROM nvidia/cuda:12.6.1-devel-ubuntu24.04
 
-RUN pip install easyocr flask
+# Install git, Python, and other necessary dependencies
+RUN apt-get update && apt-get install -y git python3 python3-pip python3-venv
+
+# Set Python alias to 'python' for convenience
+RUN ln -s /usr/bin/python3 /usr/bin/python
+
+# if you forked EasyOCR, you can pass in your own GitHub username to use your fork
+# i.e. gh_username=myname
+ARG gh_username=JaidedAI
+ARG service_home="/home/EasyOCR"
+ARG venv_home="/home/venv"
+
+# Create and activate virtual environment
+RUN python -m venv "$venv_home"
+ENV PATH="$venv_home/bin:$PATH"
+
+# Install setuptools and wheel inside the virtual environment
+RUN pip install --upgrade pip setuptools wheel
+
+# Clone EasyOCR repo
+RUN mkdir "$service_home" \
+    && git clone "https://github.com/$gh_username/EasyOCR.git" "$service_home" \
+    && cd "$service_home" \
+    && git remote add upstream "https://github.com/JaidedAI/EasyOCR.git" \
+    && git pull upstream master
+
+# Build inside the virtual environment
+RUN cd "$service_home" \
+    && python setup.py build_ext --inplace -j 4 \
+    && python -m pip install -e .
+
+# Install Flask inside the virtual environment
+RUN pip install flask
+
+# Expose port 9111
+EXPOSE 9111
 
 # Create Flask API
 COPY ./app /app
 WORKDIR /app
 
+# Use virtual environment's Python to run the app
 CMD ["python", "app.py"]
