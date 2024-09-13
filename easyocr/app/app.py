@@ -7,6 +7,7 @@ import numpy as np
 app = Flask(__name__)
 reader = easyocr.Reader(['en'])
 
+## OCR endpoint
 @app.route('/ocr', methods=['POST'])
 def ocr():
     if 'file' not in request.files:

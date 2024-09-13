@@ -1,0 +1,18 @@
+{
+    "parsed_data": {
+      "bet_type": "Under 20.5 Ist Half Totals",
+      "league": "NFL",
+      "date": "9/8/24",
+      "away_team": "Las Vegas Raiders",
+      "home_team": "Los Angeles Chargers",
+      "wager_team": null,
+      "odds": "-125",
+      "bet": "S25.00",
+      "risk": 25,
+      "payout": "S45.00",
+      "winning": true,
+      "outcome": "WON",
+      "bankroll": null,
+      "profit_loss": 20
+    }
+  }

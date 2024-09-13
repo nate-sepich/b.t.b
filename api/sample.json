@@ -1,0 +1,20 @@
+{
+    "extracted_text": "On 2023-09-13, a bet was placed on the NFL game between the Kansas City Chiefs and Los Angeles Chargers. The wager was on the Chiefs with odds of 1.95, a bet amount of $100, and a payout of $195 if the Chiefs win.",
+    "output_json": {
+      "bet_type": null,
+      "league": null,
+      "date": null,
+      "away_team": null,
+      "home_team": null,
+      "wager_team": null,
+      "odds": null,
+      "bet": null,
+      "risk": null,
+      "payout": null,
+      "winning": null,
+      "outcome": null,
+      "bankroll": null,
+      "profit_loss": null
+    }
+  }
+  

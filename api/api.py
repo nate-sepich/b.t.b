@@ -1,16 +1,51 @@
+from dotenv import load_dotenv
 from fastapi import FastAPI, UploadFile, File
-from googleapiclient.discovery import build
-from google.oauth2.credentials import Credentials
-from google.auth.transport.requests import Request
+from pydantic import BaseModel
+from typing import Optional
 import requests
-import os
+from gemini_client import generate_content_from_model
+from storage import add_bet_to_csv, get_user_bets_csv, calculate_metrics
+load_dotenv()
 
 app = FastAPI()
 
-# New endpoint to handle image upload and OCR processing
+class LLMRequestModel(BaseModel):
+    extracted_text: str
+    output_json: dict
+
+class BetDetails(BaseModel):
+    bet_type: Optional[str] = None
+    league: Optional[str] = None
+    date: Optional[str] = None
+    away_team: Optional[str] = None
+    home_team: Optional[str] = None
+    wager_team: Optional[str] = None
+    odds: Optional[float] = None
+    bet: Optional[float] = None
+    risk: Optional[float] = None
+    payout: Optional[float] = None
+    winning: Optional[bool] = None
+    outcome: Optional[str] = None
+    bankroll: Optional[float] = None
+    profit_loss: Optional[float] = None
+
+# LLM Parsing Endpoint
+@app.post('/llm')
+async def llm(llm_request: LLMRequestModel):
+    extracted_text = llm_request.extracted_text
+    output_json = llm_request.output_json
+
+    try:
+        parsed_data = generate_content_from_model(extracted_text, output_json)
+        add_bet_to_csv(parsed_data)
+    except Exception as e:
+        return {"error": str(e)}
+    
+    return {"parsed_data": parsed_data}
+
+# Image Upload and OCR Processing
 @app.post("/upload/")
 async def upload_image(file: UploadFile = File(...)):
-    # Read the file content
     file_content = await file.read()
 
     try:
@@ -23,15 +58,8 @@ async def upload_image(file: UploadFile = File(...)):
     except requests.exceptions.RequestException as e:
         return {"error": f"Error in OCR service: {str(e)}"}
     
-    # Parse the response from the OCR service
     ocr_result = response.json()
     extracted_text = ocr_result.get("extracted_text", "")
-
-    # try:
-    #     # Update Google Sheets with the extracted text
-    #     update_google_sheet([[extracted_text]])
-    # except Exception as e:
-    #     return {"error": f"Failed to update Google Sheets: {str(e)}"}
 
     return {"extracted_text": extracted_text}
 
