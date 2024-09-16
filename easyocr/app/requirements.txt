@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+easyocr
+python-multipart
+pillow
+numpy
