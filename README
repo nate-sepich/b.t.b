@@ -1,2 +1,5 @@
 the beginning of beat the books.
-
+sh 
+```
+docker compose up --build
+```
