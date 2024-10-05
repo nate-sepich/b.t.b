@@ -35,7 +35,7 @@ RUN cd "$service_home" \
 EXPOSE 9000
 
 # Copy Source Code
-COPY ./app /app
+COPY easyocr/app /app
 WORKDIR /app
 
 # Install Python packages

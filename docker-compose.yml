@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  easyocr:
+    build:
+      context: .
+      dockerfile: easyocr/dockerfile
+    ports:
+      - "9000:9000"
+    networks:
+      - btb-network
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1  # Limit access to one GPU
+              capabilities: [gpu]  # Specify that the container needs GPU access
+
+  llm_service:
+    build:
+      context: .
+      dockerfile: llm_service/dockerfile
+    ports:
+      - "9002:9002"
+    networks:
+      - btb-network
+
+  api_service:
+    build:
+      context: .
+      dockerfile: api/dockerfile
+    ports:
+      - "9001:9001"
+    networks:
+      - btb-network
+
+  storage_service:
+    build:
+      context: .
+      dockerfile: storage/dockerfile
+    ports:
+      - "9004:9004"
+    volumes:
+      - ~/.aws/:/root/.aws # Mount local AWS credentials to the container
+    networks:
+      - btb-network
+
+  dynamodb:
+    image: amazon/dynamodb-local
+    ports:
+      - "9005:9005"
+    volumes:
+      - ./data/:/home/dynamodblocal/data # Mount local ./data directory to persist DynamoDB data
+    command: "-jar DynamoDBLocal.jar -sharedDb -port 9005 -dbPath /home/dynamodblocal/data" # Use sharedDb and the local path
+    networks:
+      - btb-network
+
+networks:
+  btb-network:
+    driver: bridge

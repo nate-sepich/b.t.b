@@ -1,3 +1,19 @@
 {
-    "python.envFile": "${workspaceFolder}/.env"
+    "python.envFile": "${workspaceFolder}/.env",
+    "serverlessConsole.services": [
+        {
+            "type": "dynamodb",
+            "title": "BetsTable",
+            "tableName": "BetsTable",
+            "region": "local",
+            "endpoint": "http://localhost:9005"
+        },
+        {
+            "type": "dynamodb",
+            "title": "UsersTable",
+            "tableName": "UsersTable",
+            "region": "local",
+            "endpoint": "http://localhost:9005"
+        }
+    ]
 }

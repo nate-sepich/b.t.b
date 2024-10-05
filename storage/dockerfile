@@ -1,0 +1,29 @@
+# Use the official Python image from the Docker Hub
+FROM python:3.12-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Install necessary dependencies including AWS CLI
+RUN pip install awscli
+RUN aws --profile default configure set aws_access_key_id "dummyaccesskey"
+RUN aws --profile default configure set aws_secret_access_key  "dummysecretkey"
+RUN aws --profile default configure set region  "us-west-2"
+
+# Copy the directory requirements.txt into the container at /app
+COPY ./storage/app/requirements.txt .
+
+# Install any needed packages specified in requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy only the requirements file first to leverage Docker cache
+COPY ./storage/app/ .
+
+# Copy the service_models/models.py from the host system into the container
+COPY ./service_models/models.py ./service_models/models.py
+
+# Make port 9004 available to the world outside this container
+EXPOSE 9004
+
+# Run the FastAPI application using uvicorn
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "9004"]
