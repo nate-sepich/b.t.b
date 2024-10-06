@@ -7,6 +7,33 @@
 To get started, you can quickly spin up all the services using Docker Compose from the root directory:
 
 `docker compose up --build` 
+## Steps to Run the Project
+
+1. **Clone the Repository**:
+    ```sh
+    git clone <repository-url>
+    cd <repository-directory>
+    ```
+
+2. **Set Up Your Environment**:
+    - Create a `.env` file in the root directory with the necessary environment variables, such as Google Cloud credentials and API keys.
+    - EX: GOOGLE_API_KEY=1234_AbCd
+
+3. **Build and Start All Services Using Docker Compose**:
+    ```sh
+    docker compose up --build
+    ```
+
+4. **Verify That All Services Are Up and Running**:
+    - Ensure that the containers for all services (API, EasyOCR, LLM, Storage, and DynamoDB) are listed and healthy.
+    ```sh
+    docker ps
+    ```
+
+5. **Access the API Service**:
+    - By default, the API Service will be available at [http://localhost:9001](http://localhost:9001/docs).
+    - You can use FastAPI's Swagger UI to test the endpoints directly. The Swagger UI is available at [http://localhost:9001/docs](http://localhost:9001/docs). For more information, refer to the [FastAPI documentation](https://fastapi.tiangolo.com/).
+
 
 # Project Overview
 
@@ -31,6 +58,8 @@ The **API Service** serves as the entry point for clients and acts as the main o
 ## 2. EasyOCR Service
 
 The **EasyOCR Service** is responsible for providing OCR capabilities, enabling extraction of text from images. It supports common image formats such as JPEG, PNG, and PDF, and can be used for various sports books screenshots.
+### Example Input for OCR
+![ESPN Copy/Paste Export](test_images/image.png)
 
 - **app.py**: A FastAPI-based wrapper around the EasyOCR library, providing an endpoint to process images.
 - **Dockerfile**: Configures the container for GPU support to enhance the OCR processing speed.
@@ -38,10 +67,6 @@ The **EasyOCR Service** is responsible for providing OCR capabilities, enabling 
 ## 3. LLM Service
 
 The **LLM Service** handles interactions with Google's Gemini language model to fulfill content generation or NLP-related requests.
-
-### Example Input for LLM
-
-- ESPN Copy/Paste Export: [test_images/image.png](test_images/image.png)
 
 - **app.py**: A FastAPI application that serves endpoints for LLM requests.
 
