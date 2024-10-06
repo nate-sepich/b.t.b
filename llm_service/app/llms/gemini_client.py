@@ -33,8 +33,8 @@ def preprocess_text(text: str) -> str:
     # Additional corrections as needed
     return text
 
-# Improved function to generate content from LLM
-def generate_content_from_model(extracted_text: str) -> dict:
+# Improved function to generate content from LLM for multiple bets
+def generate_content_from_model(extracted_text: str) -> list:
     # Define the schema based on the Pydantic model
     output_json_template = {
         "user_id": "Nate",
@@ -67,7 +67,7 @@ def generate_content_from_model(extracted_text: str) -> dict:
         # Enhanced Prompt Structure
         prompt = f"""
         You are a highly capable model tasked with parsing betting slip information. The text may contain OCR errors.
-        Please extract the relevant information from the following text and populate a JSON object based on the schema provided.
+        Please extract the relevant information for each bet from the following text and populate a list of JSON objects based on the schema provided.
 
         Important Instructions:
         - Dollar signs ($) might be misread as 'S'. Make corrections where applicable.
@@ -77,6 +77,7 @@ def generate_content_from_model(extracted_text: str) -> dict:
         - Multiple monetary values may be present. Distinguish between "risk", "payout", and "to_win".
         - Use the context of words like 'BET', 'PAYOUT', 'Settled' to determine appropriate values.
         - Dates are in the format 'MMM DD, YYYY at HH:MM AM/PM' in most cases.
+        - Extract all bets if there are multiple in the text.
 
         **Text:**
         "{cleaned_text}"
@@ -84,32 +85,34 @@ def generate_content_from_model(extracted_text: str) -> dict:
         **Schema Template:**
         {json.dumps(output_json_template, indent=2)}
 
-        Ensure the JSON object is valid and accurately fills in all the fields based on the given text. If any field cannot be determined, leave it as null.
+        Ensure each JSON object is valid and accurately fills in all the fields based on the given text. If any field cannot be determined, leave it as null.
 
         Example:
         Given a similar text input, here is how the JSON should be structured:
-        {{
-          "user_id": "Nate",
-          "bet_id": "ABCDEFGHIJKL",
-          "upload_timestamp": "2024-09-15T13:00:00",
-          "league": "NFL",
-          "season": 2024,
-          "date": "2024-09-22T15:25:00",
-          "game_id": "GAME12345",
-          "away_team": "BAL Ravens",
-          "home_team": "DAL Cowboys",
-          "wager_team": "BAL Ravens",
-          "bet_type": "Totals",
-          "selection": "Over 23.5",
-          "odds": "-120",
-          "risk": "61.21",
-          "to_win": "51.01",
-          "payout": "112.22",
-          "outcome": "WON",
-          "profit_loss": "51.01"
-        }}
+        [
+          {{
+            "user_id": "Nate",
+            "bet_id": "ABCDEFGHIJKL",
+            "upload_timestamp": "2024-09-15T13:00:00",
+            "league": "NFL",
+            "season": 2024,
+            "date": "2024-09-22T15:25:00",
+            "game_id": "GAME12345",
+            "away_team": "BAL Ravens",
+            "home_team": "DAL Cowboys",
+            "wager_team": "BAL Ravens",
+            "bet_type": "Totals",
+            "selection": "Over 23.5",
+            "odds": "-120",
+            "risk": "61.21",
+            "to_win": "51.01",
+            "payout": "112.22",
+            "outcome": "WON",
+            "profit_loss": "51.01"
+          }}
+        ]
 
-        Please output the resulting JSON object without additional commentary.
+        Please output the resulting list of JSON objects without additional commentary.
         """
 
         # Generate content from LLM
@@ -129,15 +132,15 @@ def generate_content_from_model(extracted_text: str) -> dict:
 
     # Handling response and JSON parsing
     try:
-        # Attempt to parse the cleaned response content as JSON
+        # Attempt to parse the cleaned response content as a list of JSON objects
         parsed_data = json.loads(cleaned_content)
     except json.JSONDecodeError as e:
         raise ValueError(f"Failed to parse the response as JSON: {str(e)}")
 
-    # Validate parsed data to ensure critical fields are populated correctly
-    parsed_data = validate_and_correct_output(parsed_data, cleaned_text)
+    # Validate parsed data to ensure critical fields are populated correctly for each bet
+    validated_data = [validate_and_correct_output(bet, cleaned_text) for bet in parsed_data]
 
-    return parsed_data
+    return validated_data
 
 # Function to validate and correct the LLM output
 def validate_and_correct_output(parsed_data: dict, original_text: str) -> dict:

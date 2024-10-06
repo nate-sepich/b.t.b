@@ -11,7 +11,7 @@ COPY ./api/app/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy only the requirements file first to leverage Docker cache
-COPY ./api/app/ .
+COPY ./api/app/. .
 
 # Copy the service_models/models.py from the host system into the container
 COPY ./service_models/models.py ./service_models/models.py
