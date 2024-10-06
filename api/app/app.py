@@ -5,7 +5,6 @@ from fastapi import FastAPI, UploadFile, File
 import requests
 # Internal Python Dependencies
 from service_models.models import LLMRequestModel, BetDetails
-from sportsbooks.espn.ingestion import IngestionProvider  # Import the parse function
 
 app = FastAPI()
 
