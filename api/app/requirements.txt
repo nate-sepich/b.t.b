@@ -6,5 +6,8 @@ uvicorn==0.22.0
 requests==2.31.0
 python-multipart
 
+# Importing sportsbooks data
+PyPDF2
+
 # Optional: For managing Python environment if necessary
 python-dotenv==1.0.0

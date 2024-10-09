@@ -11,8 +11,7 @@ To get started, you can quickly spin up all the services using Docker Compose fr
 
 1. **Clone the Repository**:
     ```sh
-    git clone <repository-url>
-    cd <repository-directory>
+    git clone https://github.com/nate-sepich/b.t.b.git
     ```
 
 2. **Set Up Your Environment**:
@@ -21,6 +20,7 @@ To get started, you can quickly spin up all the services using Docker Compose fr
 
 3. **Build and Start All Services Using Docker Compose**:
     ```sh
+    cd b.t.b
     docker compose up --build
     ```
 

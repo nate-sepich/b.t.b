@@ -5,6 +5,7 @@ from fastapi import FastAPI, UploadFile, File
 import requests
 # Internal Python Dependencies
 from service_models.models import LLMRequestModel, BetDetails
+from sportsbooks.mgm.ingestion import IngestionProvider as mgm_ingestion
 
 app = FastAPI()
 
@@ -16,7 +17,7 @@ async def upload_image(file: UploadFile = File(...)):
     try:
         # Send the file to the OCR service
         response = requests.post(
-            "http://172.17.0.1:9000/ocr",
+            "http://easyocr:9000/ocr",
             files={"file": (file.filename, file_content, file.content_type)}
         )
         response.raise_for_status()
@@ -33,7 +34,7 @@ async def upload_image(file: UploadFile = File(...)):
     try:
         # Send the request to the LLM service
         response = requests.post(
-            "http://172.17.0.1:9002/llm",
+            "http://llm_service:9002/llm",
             data=llmRequest.json()
         )
         response.raise_for_status()
@@ -58,7 +59,7 @@ async def upload_image(file: UploadFile = File(...)):
         
         # Send the parsed data to the Storage service
         response = requests.post(
-            "http://172.17.0.1:9004/bets",
+            "http://storage_service:9004/bets",
             data=betsRequestJson,
             headers={'Content-Type': 'application/json'}
         )
@@ -69,7 +70,7 @@ async def upload_image(file: UploadFile = File(...)):
     return response.json()
 
 # Betting Data Text Ingestion for ESPN Exports
-@app.post("/exports/espn/")
+@app.post("/imports/espn/")
 async def parse_espn_bet_text(bet_data: str):
     try:
         # Parse the extracted text into the Pydantic object for the /llm call
@@ -80,7 +81,7 @@ async def parse_espn_bet_text(bet_data: str):
     try:
         # Send the request to the LLM service
         response = requests.post(
-            "http://172.17.0.1:9002/llm",
+            "http://llm_service:9002/llm",
             data=llmRequest.json()
         )
         response.raise_for_status()
@@ -105,7 +106,62 @@ async def parse_espn_bet_text(bet_data: str):
         
         # Send the parsed data to the Storage service
         response = requests.post(
-            "http://172.17.0.1:9004/bets",
+            "http://storage_service:9004/bets",
+            data=betsRequestJson,
+            headers={'Content-Type': 'application/json'}
+        )
+        response.raise_for_status()
+    except requests.exceptions.RequestException as e:
+        return {"error": f"Error in Bets service: {str(e)}"}
+
+    return response.json()
+
+# Betting Data Text Ingestion for ESPN Exports
+@app.post("/imports/mgm/")
+async def parse_mgm_bet_pdf(file: UploadFile = File(...)):
+    # Read the file and convert to a format that EasyOCR can understand (bytes or numpy array)
+    image_bytes = await file.read()  # Read the file as bytes
+    
+    bet_data = mgm_ingestion.extract_text_pypdf2(image_bytes)
+    print(bet_data)
+    
+    try:
+        # Parse the extracted text into the Pydantic object for the /llm call
+        llmRequest = LLMRequestModel(extracted_text=bet_data)
+    except Exception as e:
+        return {"error": f"Error parsing OCR response: {str(e)}"}
+
+    try:
+        # Send the request to the LLM service
+        response = requests.post(
+            "http://api_service:9002/llm-extraction/mgm",
+            data=llmRequest.json()
+        )
+        response.raise_for_status()
+    except requests.exceptions.RequestException as e:
+        return {"error": f"Error in LLM service: {str(e)}"}
+
+    try:
+        # Parse the LLM response into a list of Pydantic BetDetails models
+        print(response)
+        response_json = response.json()
+        print(response_json)
+        # betsRequest = [BetDetails(**bet) for bet in response_json]
+        betsRequest = [print(bet) for bet in response_json]
+
+    except Exception as e:
+        return {"error": f"Error parsing LLM response: {str(e)}"}
+
+    try:
+        # Convert the list of BetDetails objects to a list of dictionaries
+        betsRequestDicts = [bet.dict() for bet in betsRequest]
+        
+        # Convert the list of dictionaries to a JSON string
+        betsRequestJson = json.dumps(betsRequestDicts, default=str)
+        
+        # Send the parsed data to the Storage service
+        response = requests.post(
+            "http://storage_service:9004/bets",
             data=betsRequestJson,
             headers={'Content-Type': 'application/json'}
         )

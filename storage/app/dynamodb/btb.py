@@ -16,8 +16,8 @@ def convert_floats_to_decimals(obj):
 
 class BTBDynamoDB():
     def __init__(self):
-        self.dynamodb_resource = boto3.resource('dynamodb', region_name='us-west-2', endpoint_url='http://172.17.0.1:9005')
-        self.dynamodb_client = boto3.client('dynamodb', region_name='us-west-2', endpoint_url='http://172.17.0.1:9005')
+        self.dynamodb_resource = boto3.resource('dynamodb', region_name='us-west-2', endpoint_url='http://dynamodb:9005')
+        self.dynamodb_client = boto3.client('dynamodb', region_name='us-west-2', endpoint_url='http://dynamodb:9005')
         self.create_bets_table('BetsTable')
         self.create_users_table('UsersTable')
     

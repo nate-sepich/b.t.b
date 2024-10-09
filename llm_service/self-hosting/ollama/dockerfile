@@ -1,0 +1,8 @@
+FROM ollama/ollama:latest
+
+ENV OLLAMA_KEEP_ALIVE=1hr
+
+# Expose the Proper Port
+EXPOSE 11434
+
+CMD ["serve"]

@@ -26,6 +26,24 @@ services:
     networks:
       - btb-network
 
+  ollama:
+    build:
+      context: .
+      dockerfile: llm_service/self-hosting/ollama/dockerfile
+    ports:
+      - "11434:11434"
+    volumes:
+      - ./models/:/home/models/data
+    networks:
+      - btb-network
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1  # Limit access to one GPU
+              capabilities: [gpu]  # Specify that the container needs GPU access
+              
   api_service:
     build:
       context: .
