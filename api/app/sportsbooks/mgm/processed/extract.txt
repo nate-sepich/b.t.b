@@ -1,0 +1,493 @@
+My Bets
+api_service-1      | 10/4/24
+api_service-1      | Betslip ID: 1ZRZWRLCGX
+api_service-1      | Result:Washington
+api_service-1      | Michigan at Washington
+api_service-1      | 10/5/24 • 6:30 PM
+api_service-1      | Bet placement Stake Odds Payout (inc Stake)
+api_service-1      | 10/5/24 • 6:24 PM $15.00 -115 $28.04WON
+api_service-1      | WashingtonMoney Line
+api_service-1      | Betslip ID: 1ZRZWRKZWN
+api_service-1      | Result:Nevada +7.5
+api_service-1      | Nevada at San Jose State
+api_service-1      | 10/5/24 • 6:30 PM
+api_service-1      | Bet placement Stake Odds Payout (inc Stake)
+api_service-1      | 10/5/24 • 6:24 PM $15.00 -115 $28.04WON
+api_service-1      | Nevada +7.5Spread
+ Betslip ID: 1ZRZAHEW1J
+ Cancellation Reason:Winning selection not available in the market. Any Bonus Bets used will be refunded
+ within 24 hours.
+ Rutgers at Nebraska
+ 10/5/24 • 3:00 PM
+ Bet placement Stake Odds Payout (inc Stake)
+ 10/5/24 • 8:41 AM $15.00 -115 $15.00CANCELLED
+ Rutgers +7Spread
+ Betslip ID: 1ZRZAGC78U
+ Result:California +10
+ Miami Florida at California
+ 10/5/24 • 9:30 PM
+ Bet placement Stake Odds Payout (inc Stake)
+ 10/5/24 • 8:40 AM $15.00 -110 $28.64WON
+ California +10 Spread10/6/24, 1:21 PM BetMGM
+ https://sports.ia.betmgm.com/en/sports/my-bets/settled 1/13Betslip ID: 1ZRZAGA9L3
+ Result:Temple +17.5
+ Temple at Connecticut
+ 10/5/24 • 2:30 PM
+ Bet placement Stake Odds Payout (inc Stake)
+ 10/5/24 • 8:40 AM $15.00 -115 -LOST
+ Connecticut -17.5Spread
+ Betslip ID: 1ZRZAF9B68
+ Result:Army -13.5
+ Army at Tulsa
+ 10/5/24 • 11:00 AM
+ Bet placement Stake Odds Payout (inc Stake)
+ source=sched.go:714 msg="new model will fit in available VRAM in single GPU, loading" model=/root/.ollama/models/blobs/sha256-ff82381e2bea77d91c1b824c7afb83f6fb73e9f7de9dda631bcdbca564aa5435 gpu=GPU-4be39e0d-521e-f61b-0da8-18d22a0dd915 parallel=1 available=5379194880 required="4.7 GiB"
+ 10/5/24 • 8:39 AM $15.00 -105 $29.29WON
+ source=server.go:103 msg="system memory" total="7.7 GiB" free="5.9 GiB" free_swap="1.9 GiB"
+ Army -13.5Spread
+ source=memory.go:326 msg="offload to cuda" layers.requested=-1 layers.model=33 layers.offload=33 layers.split="" memory.available="[5.0 GiB]" memory.gpu_overhead="0 B" memory.required.full="4.7 GiB" memory.required.partial="4.7 GiB" memory.required.kv="256.0 MiB" memory.required.allocations="[4.7 GiB]" memory.weights.total="3.9 GiB" memory.weights.repeating="3.8 GiB" memory.weights.nonrepeating="105.0 MiB" memory.graph.full="164.0 MiB" memory.graph.partial="185.0 MiB"
+ Betslip ID: 1ZRZAE6JUB
+ source=server.go:388 msg="starting llama server" cmd="/usr/lib/ollama/runners/cuda_v12/ollama_llama_server --model /root/.ollama/models/blobs/sha256-ff82381e2bea77d91c1b824c7afb83f6fb73e9f7de9dda631bcdbca564aa5435 --ctx-size 2048 --batch-size 512 --embedding --log-disable --n-gpu-layers 33 --parallel 1 --port 43469"
+ Result:Over 21.5
+ source=sched.go:449 msg="loaded runners" count=1
+ Navy at Air Force
+ source=server.go:587 msg="waiting for llama runner to start responding"
+ 10/5/24 • 11:00 AM
+ source=server.go:621 msg="waiting for server to become available" status="llm server error"
+ Bet placement Stake Boosted Odds Payout (inc Stake)
+ 10/5/24 • 8:38 AM $15.00 -150-125 $27.00WON
+ Over 21.5Navy: Points scored
+ $25.00 in cash + Boosted winnings in $2.00 Cash
+ Betslip ID: 1ZRZAE4W7X
+ Result:Marshall -3
+ Appalachian State at Marshall
+ 10/5/24 • 2:30 PM
+="3f6ec33" tid="140237061738496" timestamp=1728537501
+ Bet placement Stake Odds Payout (inc Stake)
+threads_batch=3 system_info="AVX = 1 | AVX_VNNI = 0 | AVX2 = 0 | AVX512 = 0 | AVX512_VBMI = 0 | AVX512_VNNI = 0 | AVX512_BF16 = 0 | FMA = 0 | NEON = 0 | SVE = 0 | ARM_FMA = 0 | F16C = 0 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 1 | SSE3 = 1 | SSSE3 = 1 | VSX = 0 | MATMUL_INT8 = 0 | LLAMAFILE = 1 | " tid="140237061738496" timestamp=1728537501 total_threads=5
+ 10/5/24 • 8:38 AM $15.00 -120 $27.50WON
+name="127.0.0.1" n_threads_http="4" port="43469" tid="140237061738496" timestamp=1728537501
+ Marshall -3Spread
+h 25 key-value pairs and 291 tensors from /root/.ollama/models/blobs/sha256-ff82381e2bea77d91c1b824c7afb83f6fb73e9f7de9dda631bcdbca564aa5435 (version GGUF V3 (latest))
+ Betslip ID: 1ZRZAE4117
+s/values. Note: KV overrides do not apply in this output.
+ Result:SMU +6.5
+            general.architecture str              = llama
+ SMU at Louisville
+                    general.name str              = Mistral-7B-Instruct-v0.3
+ 10/5/24 • 11:00 AM
+               llama.block_count u32              = 32
+ Bet placement Stake Odds Payout (inc Stake)
+            llama.context_length u32              = 32768
+ 10/5/24 • 8:38 AM $15.00 -120 -LOST
+          llama.embedding_length u32              = 4096
+ Louisville -6.5Spread10/6/24, 1:21 PM BetMGM
+       llama.feed_forward_length u32              = 14336
+ https://sports.ia.betmgm.com/en/sports/my-bets/settled 2/139/28/24
+      llama.attention.head_count u32              = 32
+ 9/27/24Betslip ID: 1ZRZAD30YW
+   llama.attention.head_count_kv u32              = 8
+ Result:Pittsburgh U -2.5
+            llama.rope.freq_base f32              = 1000000.000000
+ Pittsburgh U at North Carolina
+attention.layer_norm_rms_epsilon f32              = 0.000010
+ 10/5/24 • 11:00 AM
+               general.file_type u32              = 2
+ Bet placement Stake Odds Payout (inc Stake)
+                llama.vocab_size u32              = 32768
+ 10/5/24 • 8:37 AM $15.00 -115 $28.04WON
+      llama.rope.dimension_count u32              = 128
+ Pittsburgh U -2.5Spread
+            tokenizer.ggml.model str              = llama
+ Betslip ID: 1ZRN21G87M
+              tokenizer.ggml.pre str              = default
+ Result:Under 46.5
+           tokenizer.ggml.tokens arr[str,32768]   = ["<unk>", "<s>", "</s>", "[INST]", "[...
+ Buffalo Bills at Baltimore Ravens
+           tokenizer.ggml.scores arr[f32,32768]   = [0.000000, 0.000000, 0.000000, 0.0000...
+ 9/29/24 • 7:20 PM
+       tokenizer.ggml.token_type arr[i32,32768]   = [2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, ...
+ Bet placement Stake Odds Payout (inc Stake)
+     tokenizer.ggml.bos_token_id u32              = 1
+ 9/29/24 • 6:33 PM $60.00 -110 -LOST
+     tokenizer.ggml.eos_token_id u32              = 2
+ Over 46.5Totals
+ tokenizer.ggml.unknown_token_id u32              = 0
+ Betslip ID: 1ZRMM8MSW4
+    tokenizer.ggml.add_bos_token bool             = true
+ Result:Over 21
+    tokenizer.ggml.add_eos_token bool             = false
+ New Orleans Saints at Atlanta Falcons
+         tokenizer.chat_template str              = {{ bos_token }}{% for message in mess...
+ 9/29/24 • 12:02 PM
+    general.quantization_version u32              = 2
+ Bet placement Stake Odds Payout (inc Stake)
+nsors
+ 9/29/24 • 11:44 AM $50.00 -130 -LOST
+nsors
+ Under 211st Half Totals
+nsors
+ Betslip ID: 1ZRMM3ZHD0
+e = 771
+ Result:Over 20.5
+e = 0.1731 MB
+ New Orleans Saints at Atlanta Falcons
+GGUF V3 (latest)
+ 9/29/24 • 12:02 PM
+llama
+ Bet placement Stake Odds Payout (inc Stake)
+SPM
+ 9/29/24 • 11:39 AM $20.00 -115 -LOST
+32768
+ Under 20.51st Half Totals
+0
+ Betslip ID: 1ZRLD9X9RS
+0
+ Result:Under 50.5
+32768
+ Arkansas at Texas A&M (Neutral Venue)
+4096
+ 9/28/24 • 2:30 PM
+32
+ Bet placement Stake Odds Payout (inc Stake)
+32
+ 9/28/24 • 2:25 PM $15.00 -105 $29.29WON
+8
+ Under 50.5Totals10/6/24, 1:21 PM BetMGM
+128
+ https://sports.ia.betmgm.com/en/sports/my-bets/settled 3/13Betslip ID: 1ZRLD9WCD4
+0
+ Result:Oklahoma
+128
+ Oklahoma at Auburn
+128
+ 9/28/24 • 2:30 PM
+4
+ Bet placement Stake Odds Payout (inc Stake)
+1024
+ 9/28/24 • 2:25 PM $15.00 -115 -LOST
+1024
+ AuburnMoney Line
+0.0e+00
+ Betslip ID: 1ZRL702EGZ
+1.0e-05
+ Result:Arkansas +5.5
+0.0e+00
+ Arkansas at Texas A&M (Neutral Venue)
+0.0e+00
+ 9/28/24 • 2:30 PM
+0.0e+00
+ Bet placement Stake Odds Payout (inc Stake)
+14336
+ 9/28/24 • 11:04 AM $15.00 -105 $29.29WON
+0
+ Arkansas +5.5Spread
+0
+ Betslip ID: 1ZRL700RMB
+1
+ Result:Clemson -22.5
+0
+ Stanford at Clemson
+0
+ 9/28/24 • 6:00 PM
+linear
+ Bet placement Stake Odds Payout (inc Stake)
+1000000.0
+ 9/28/24 • 11:04 AM $15.00 -110 $28.64WON
+1
+ Clemson -22.5Spread
+32768
+ Betslip ID: 1ZRL6ZYTEW
+unknown
+ Result:Over 49.5
+0
+ Georgia at Alabama
+0
+ 9/28/24 • 6:30 PM
+0
+ Bet placement Stake Odds Payout (inc Stake)
+0
+ 9/28/24 • 11:03 AM $15.00 -110 -LOST
+0
+ Under 49.5Totals
+7B
+ Betslip ID: 1ZRL6ZXHLW
+Q4_0
+ Cancellation Reason:Winning selection not available in the market. Any Bonus Bets used will be refunded
+7.25 B
+ within 24 hours.
+3.83 GiB (4.54 BPW)
+ Cincinnati U at Texas Tech
+Mistral-7B-Instruct-v0.3
+ 9/28/24 • 7:00 PM
+1 '<s>'
+ Bet placement Stake Odds Payout (inc Stake)
+2 '</s>'
+ 9/28/24 • 11:03 AM $15.00 -105 $15.00CANCELLED
+0 '<unk>'
+ Cincinnati U +3Spread10/6/24, 1:21 PM BetMGM
+781 '<0x0A>'
+ https://sports.ia.betmgm.com/en/sports/my-bets/settled 4/139/25/24Betslip ID: 1ZRL6YTAUR
+48
+ Result:Kansas State -6
+no
+ Oklahoma State at Kansas State
+no
+ 9/28/24 • 11:03 AM
+i_service-1      | Bet placement Stake Odds Payout (inc Stake)
+compute capability 7.5, VMM: yes
+ 9/28/24 • 11:02 AM $15.00 -110 $28.64WON
+ source=server.go:621 msg="waiting for server to become available" status="llm server loading model"
+ Kansas State -6Spread
+7 MiB
+ Betslip ID: 1ZRL6XNC9W
+ Result:Under 55.5
+ North Carolina at Duke
+ 9/28/24 • 3:00 PM
+ Bet placement Stake Odds Payout (inc Stake)
+ 9/28/24 • 11:01 AM $15.00 -115 -LOST
+ Over 55.5Totals
+ Betslip ID: 1ZRL6T9XBK
+ Result:Northern Illinois +7.5
+ Northern Illinois at NC State
+ 9/28/24 • 11:00 AM
+ Bet placement Stake Odds Payout (inc Stake)
+ 9/28/24 • 10:58 AM $15.00 -120 $27.50WON
+ Northern Illinois +7.5Spread
+ Betslip ID: 1ZRHGEWA2Y
+ Result:Over 21.5
+ Philadelphia Eagles at Tampa Bay Buccaneers
+ 9/29/24 • 12:00 PM
+ Bet placement Stake Odds Payout (inc Stake)
+ 9/26/24 • 12:54 PM $60.00 -130 -LOST
+ Under 21.51st Half Totals10/6/24, 1:21 PM BetMGM
+ https://sports.ia.betmgm.com/en/sports/my-bets/settled 5/139/24/24
+ 9/22/24
+ 9/21/24Betslip ID: 1ZRG4ZWGMT
+ Result:Over 50.5
+ Washington Commanders at Arizona Cardinals
+ 9/29/24 • 3:05 PM
+ Bet placement Stake Odds Payout (inc Stake)
+ 9/25/24 • 1:43 PM $50.00 -110 $95.45WON
+ Over 50.5Totals
+ $10.00 in a Bonus Bet if your bet loses
+ Betslip ID: 1ZRCAHR1BX
+ Result:Chiefs
+ Kansas City Chiefs at Atlanta Falcons
+ 9/22/24 • 7:20 PM
+ Bet placement Stake Odds Payout (inc Stake)
+ 9/22/24 • 8:25 PM $25.00 +100 $50.00WON
+ ChiefsMoney Line
+ Betslip ID: 1ZRC0L24RG
+ Result:Over 39.5
+ Carolina Panthers at Las Vegas Raiders
+ 9/22/24 • 3:05 PM
+ Bet placement Stake Odds Payout (inc Stake)
+ 9/22/24 • 3:08 PM $50.00 -110 $95.45WON
+ Over 39.5Totals10/6/24, 1:21 PM BetMGM
+g layers to GPU
+ https://sports.ia.betmgm.com/en/sports/my-bets/settled 6/139/20/24Parlay 2 picksBetslip ID: 1ZRC05J74G WON
+ng layers to GPU
+ Bet placement Stake Total odds Payout (inc Stake)
+ to GPU
+ 9/22/24 • 2:53 PM $5.00 +196 $14.81
+ =    72.00 MiB
+ Result:Lions
+ =  3850.02 MiB
+ Detroit Lions at Arizona Cardinals
+ 9/22/24 • 3:25 PM-155 LionsMoney Line
+ 
+ Result:Ravens
+ Baltimore Ravens at Dallas Cowboys
+ 9/22/24 • 3:25 PM-125 RavensMoney Line
+ Betslip ID: 1ZRBMPE8FK
+ Result:Over 39
+ Carolina Panthers at Las Vegas Raiders
+ 9/22/24 • 3:05 PM
+ Bet placement Stake Odds Payout (inc Stake)
+ 9/22/24 • 9:19 AM $7.97 -130 $14.10WON
+ Over 39Totals
+ Betslip ID: 1ZRBMNDCGG
+ Result:Over 37
+ Green Bay Packers at Tennessee Titans
+ 9/22/24 • 12:00 PM
+ Bet placement Stake Boosted Odds Payout (inc Stake)
+ 9/22/24 • 9:18 AM $5.00 -115-110 $9.57WON
+ Over 37Totals
+ $9.35 in cash + Boosted winnings in $0.22 Cash
+ Betslip ID: 1ZRAETSBC9
+ Result:Under 59.5
+ Southern Miss at Jacksonville State
+ 9/21/24 • 2:00 PM
+ Bet placement Stake Odds Payout (inc Stake)
+ 9/21/24 • 12:34 PM $15.00 -105 -LOST
+ Over 59.5Totals10/6/24, 1:21 PM BetMGM
+ https://sports.ia.betmgm.com/en/sports/my-bets/settled 7/139/19/24
+ Betslip ID: 1ZR948E37C
+ Result:Under 35.5
+ Los Angeles Chargers at Pittsburgh Steelers
+ 9/22/24 • 12:00 PM
+ Bet placement Stake Odds Payout (inc Stake)
+ 9/20/24 • 1:52 PM $37.50 -110 $71.59WON
+ Under 35.5Totals
+ Betslip ID: 1ZR92E457L
+ Result:Utah +1
+ Utah at Oklahoma State
+ 9/21/24 • 3:00 PM
+ Bet placement Stake Odds Payout (inc Stake)
+ 9/20/24 • 12:54 PM $25.00 -110 -LOST
+ Oklahoma State -1Spread
+ Betslip ID: 1ZR92E44X8
+ Result:Vanderbilt +20.5
+ Vanderbilt at Missouri
+ 9/21/24 • 3:15 PM
+ Bet placement Stake Boosted Odds Payout (inc Stake)
+ 9/20/24 • 12:54 PM $5.00 -115-110 $9.57WON
+ Vanderbilt +20.5Spread
+ $9.35 in cash + Boosted winnings in $0.22 Cash
+ Betslip ID: 1ZR92CZDW0
+ Result:Denver Broncos +6.5
+ Denver Broncos at Tampa Bay Buccaneers
+ 9/22/24 • 12:00 PM
+ Bet placement Stake Odds Payout (inc Stake)
+ 9/20/24 • 12:52 PM $50.00 -105 $97.62WON
+ Denver Broncos +6.5Spread10/6/24, 1:21 PM BetMGM
+ https://sports.ia.betmgm.com/en/sports/my-bets/settled 8/139/18/24
+ 9/14/24Betslip ID: 1ZR7XEKGDK
+ Result:Kansas City Chiefs -3
+ Kansas City Chiefs at Atlanta Falcons
+ 9/22/24 • 7:20 PM
+ Bet placement Stake Odds Payout (inc Stake)
+ 9/19/24 • 5:10 PM $50.00 -110 $95.45WON
+ Kansas City Chiefs -3Spread
+ Betslip ID: 1ZR23CPHXB
+ Result:Minnesota Vikings +1.5
+ San Francisco 49ers at Minnesota Vikings
+ 9/15/24 • 12:03 PM
+ Bet placement Stake Odds Payout (inc Stake)
+ 9/15/24 • 1:56 PM $5.00 +150 -LOST
+ San Francisco 49ers -1.5Spread
+ Parlay 2 picksBetslip ID: 1ZR1ZG4J9Y LOST
+ Bet placement Stake Total odds Payout (inc Stake)
+ 9/15/24 • 11:52 AM $45.42 -154 -
+ Result:Tampa Bay Buccaneers +1.5
+ Tampa Bay Buccaneers at Detroit Lions
+ 9/15/24 • 12:02 PM-350 Detroit Lions -1.5Spread
+ 
+ Result:Denver Broncos +8.5
+ Pittsburgh Steelers at Denver Broncos
+ 9/15/24 • 3:25 PM-350 Denver Broncos +8.5Spread
+ Betslip ID: 1ZR1ZDP8Y0
+ Result:Washington Commanders -1.5
+ New York Giants at Washington Commanders
+ 9/15/24 • 12:02 PM
+ Bet placement Stake Odds Payout (inc Stake)
+ 9/15/24 • 11:49 AM $25.00 -110 -LOST
+ New York Giants +1.5Spread10/6/24, 1:21 PM BetMGM
+ https://sports.ia.betmgm.com/en/sports/my-bets/settled 9/139/13/24Betslip ID: 1ZR18DD8W9
+ Result:Over 17.5
+ Seattle Seahawks at New England Patriots
+ 9/15/24 • 12:00 PM
+ Bet placement Stake Odds Payout (inc Stake)
+ 9/14/24 • 11:33 PM $20.00 -120 -LOST
+ Under 17.5New England Patriots: Total points
+ Parlay 4 picksBetslip ID: 1ZR13TBTTN LOST
+ Bet placement Stake Total odds Payout (inc Stake)
+ 9/14/24 • 9:06 PM $10.00 +801 -
+ Result:R. Rodriguez
+ Ode Osbourne (USA) - Ronaldo Rodriguez (MEX)
+ 9/14/24 • 9:15 PM-190 R. RodriguezFight Result
+ 
+ Result:D. Lopes
+ Diego Lopes (BRA) - Brian Ortega (USA)
+ 9/14/24 • 10:15 PM-185 D. LopesFight Result
+ 
+ Result:V. Shevchenko
+ Valentina Shevchenko (KGZ) - Alexa Grasso (MEX)
+ 9/14/24 • 10:45 PM+105 V. ShevchenkoFight Result
+ 
+ Result:M. Dvalishvili
+ Merab Dvalishvili (USA) - Sean O'Malley (USA)
+ 9/14/24 • 11:15 PM-115 S. O'MalleyFight Result
+ Betslip ID: 1ZR0TN2MHL
+ Cancellation Reason:Winning selection not available in the market. Any Bonus Bets used will be refunded
+ within 24 hours.
+ Connecticut at Duke
+ 9/14/24 • 5:00 PM
+ Bet placement Stake Odds Payout (inc Stake)
+ 9/14/24 • 4:14 PM $15.00 -110 $15.00CANCELLED
+ Over 47Totals10/6/24, 1:21 PM BetMGM
+ https://sports.ia.betmgm.com/en/sports/my-bets/settled 10/139/12/24Betslip ID: 1ZR0JEBLSJ
+ Result:Georgia State +9
+ Vanderbilt at Georgia State
+ 9/14/24 • 6:00 PM
+ Bet placement Stake Odds Payout (inc Stake)
+ 9/14/24 • 11:50 AM $15.00 -110 $28.64WON
+ Georgia State +9Spread
+ Betslip ID: 1ZR0E7NHR R
+ Result:Over 71
+ North Texas at Texas Tech
+ 9/14/24 • 11:00 AM
+ Bet placement Stake Odds Payout (inc Stake)
+ 9/14/24 • 9:35 AM $15.00 -110 $28.64WON
+ Over 71Totals
+ Betslip ID: 1ZR0E5HTXL
+ Result:Over 55.5
+ Ball State at Miami Florida
+ 9/14/24 • 2:30 PM
+ Bet placement Stake Boosted Odds Payout (inc Stake)
+ 9/14/24 • 9:33 AM $20.00 -110+109 $41.82WON
+ Over 55.5Totals
+ $38.18 in cash + Boosted winnings in $3.64 Cash
+ Betslip ID: 1ZPZJKJG4R
+ Result:Under 14.5
+ Cincinnati Bengals at Kansas City Chiefs
+ 9/15/24 • 3:25 PM
+ Bet placement Stake Odds Payout (inc Stake)
+ 9/13/24 • 6:51 PM $50.00 -125 -LOST
+ Over 14.5Isiah Pacheco (KC): Longest rush
+ Betslip ID: 1ZPZJ82F3X
+ Result:Under 30.5
+ Arizona at Kansas State
+ 9/13/24 • 7:00 PM
+ Bet placement Stake Odds Payout (inc Stake)
+ 9/13/24 • 6:40 PM $25.00 -105 -LOST
+ Over 30.51st Half Totals10/6/24, 1:21 PM BetMGM
+ https://sports.ia.betmgm.com/en/sports/my-bets/settled 11/139/9/24
+ 9/7/24Betslip ID: 1ZPZ77DPBM
+ Result:Over 23.5
+ New Orleans Saints at Dallas Cowboys
+ 9/15/24 • 12:00 PM
+ Bet placement Stake Odds Payout (inc Stake)
+ 9/13/24 • 12:47 PM $50.00 -110 $95.45WON
+ Over 23.51st Half Totals
+ Betslip ID: 1ZPZ77DP4B
+ Result:Over 17.5
+ Seattle Seahawks at New England Patriots
+ 9/15/24 • 12:00 PM
+ Bet placement Stake Odds Payout (inc Stake)
+ 9/13/24 • 12:47 PM $20.00 -140 -LOST
+ Under 17.5New England Patriots: Total points
+ Betslip ID: 1ZPT0WMS1Y
+ Result:Under 48
+ Atlanta Falcons at Philadelphia Eagles
+ 9/16/24 • 7:15 PM
+ Bet placement Stake Odds Payout (inc Stake)
+ 9/9/24 • 8:04 PM $50.00 -110 $95.45WON
+ Under 48Totals
+ Betslip ID: 1ZPRDZKP47
+ Result:Over 43.5
+ Washington Commanders at Tampa Bay Buccaneers
+ 9/8/24 • 3:25 PM
+ Bet placement Stake Boosted Odds Payout (inc Stake)
+ 9/8/24 • 4:55 PM $20.00 -115+104 $40.87WON
+ Over 43.5Totals
+ $37.39 in cash + Boosted winnings in $3.48 Cash10/6/24, 1:21 PM BetMGM
+ https://sports.ia.betmgm.com/en/sports/my-bets/settled 12/13Betslip ID: 1ZPPZMAGZL
+ Result:Under 12.5
+ Jacksonville Jaguars at Miami Dolphins
+ 9/8/24 • 12:00 PM
+ Bet placement Stake Odds Payout (inc Stake)
+ 9/8/24 • 9:17 AM $29.01 -165 -LOST
+ Over 12.5Miami Dolphins: 1st half points10/6/24, 1:21 PM BetMGM
+ https://sports.ia.betmgm.com/en/sports/my-bets/settled 13/13

@@ -44,7 +44,7 @@ class BetDetails(BaseModel):
     risk: Optional[str] = None
     to_win: Optional[str] = None
     payout: Optional[str] = None
-    outcome: BetOutcome = None
+    outcome: Optional[str] = Field(default=BetOutcome.WON)
     profit_loss: Optional[Decimal] = None
 
     
