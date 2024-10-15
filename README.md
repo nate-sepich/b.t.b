@@ -94,7 +94,7 @@ docker compose up --build
 
 1. **Client Interaction**: Client requests are handled by the API Service (`api/app.py`), which directs the requests to the appropriate backend services, such as the EasyOCR service for text extraction, the LLM service for language processing and content creation, and the Storage service for saving data.
 2. **OCR Requests**: If a client request involves text extraction, the API Service sends it to the EasyOCR service (`easyocr/app.py`). The extracted text is processed and returned.
-3. **LLM Interaction**: For requests involving language model processing or content generation, the LLM Service (`llm_service/app.py`) is used. The Gemini client manages communication with Google's language model.
+3. **LLM Interaction**: For requests involving language model processing or content generation, the LLM Service (`llm_service/app.py`) is used. The Gemini client manages communication with Ollama's suit of available language models.
 4. **Data Storage**: Persistent data is handled through the Storage Service (`storage/app.py`), which uses a local DynamoDB instance.
 
 ## Application Overview
