@@ -4,7 +4,7 @@
 
 ## Project Overview
 
-This project aims to analyze betting data using AI-driven microservices, providing insights that enhance decision-making and improve betting strategies. The flow diagram below shows how data moves between these services, including the API, OCR, LLM, and Storage services.
+This project aims to analyze betting data using AI-driven microservices, providing insights that enhance decision-making and improve betting strategies. The flow diagram above shows how data moves between these services, including the API, OCR, LLM, and Storage services.
 
 This project has several microservices, each designed to handle a specific task in the system. All services are packaged using Docker and managed with `docker-compose` for easy setup. Docker ensures consistent environments, simplifying deployment across systems. `docker-compose` makes it easier to manage multiple containers, allowing the services to work together smoothly. This README provides an overview of the system setup, development process, and contribution guidelines for developers and AI enthusiasts interested in improving the project.
 
