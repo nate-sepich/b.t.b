@@ -200,9 +200,8 @@ The **Storage Service** handles data storage, using a local DynamoDB environment
    - The entire process completes in approximately 14 seconds.
 
    ```plaintext
-   api_service-1 | - root - INFO - Processing complete in: 13.989617347717285 seconds
+   api_service-1 | - root - INFO - Processing complete in: 13.98 seconds
    ```
-
 
 ## GPU vs CPU Processing
 
@@ -212,23 +211,18 @@ The **Storage Service** handles data storage, using a local DynamoDB environment
 
   - **CPU**: 1.13 seconds
   - **GPU**: 0.22 seconds
+    - 5.1x Faster
 
 - **LLM Processing**:
 
   - **CPU**: 2 minutes 5 seconds
   - **GPU**: 13.1 seconds
-
-- **Total Processing Time**:
-
-  - **CPU**: 127 seconds
-  - **GPU**: 13.39 seconds
+    - 9.5x Faster
 
 ### Advantages of GPU Acceleration
 
 - **Speed**: The GPU significantly reduces the processing time for both OCR and LLM tasks. In some cases, the GPU is able to provide an order of magnitude reduction in processing times. For example, the LLM processing time on the CPU takes over 2 minutes, whereas on the GPU it takes just over 13 seconds. This is an almost tenfold reduction, which highlights the powerful benefits of GPU acceleration for time-sensitive operations.
 - **Efficiency**: Faster processing allows for more tasks to be handled in a shorter time frame. The drastic difference in processing times means that the system can manage more user requests concurrently, without the need to significantly scale up CPU resources.
-
-
 
 ### Scaling Example
 
@@ -240,8 +234,5 @@ If the system needs to process 1,000 user requests per day, and each request inv
 - **GPU Accelerated**: With GPU acceleration reducing the total processing time to 13.39 seconds per request, it would take only about 3.7 hours to process the same 1,000 requests. This allows for significant scaling and the ability to handle even higher user loads without compromising on performance.
 
 #### Visualization
-
-- OCR: 5.1x Faster
-- LLM: 9.5x Faster
 
 ![](docs/cpu_vs_gpu.png)
