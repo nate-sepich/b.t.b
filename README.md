@@ -1,12 +1,37 @@
 # Beat the Books! (b.t.b)
 
-## Main Functionality Flow
+![](docs/System_Overview.png)
+
+## Project Overview
 
 This project aims to analyze betting data using AI-driven microservices, providing insights that enhance decision-making and improve betting strategies. The flow diagram below shows how data moves between these services, including the API, OCR, LLM, and Storage services.
 
-![](docs/System_Overview.png)
+This project has several microservices, each designed to handle a specific task in the system. All services are packaged using Docker and managed with `docker-compose` for easy setup. Docker ensures consistent environments, simplifying deployment across systems. `docker-compose` makes it easier to manage multiple containers, allowing the services to work together smoothly. This README provides an overview of the system setup, development process, and contribution guidelines for developers and AI enthusiasts interested in improving the project.
 
-**Flow Description**:
+### Why?
+Providing insights across a variety of sportsbooks can be difficult. Sportsbook developers are incentivized to reduce visibility into bettors performance metrics. A tool like this can be used to capture bets and view analysis across a variety of dimensions.
+
+The key next step would be to develop an insights dashboard based on the data source provided by the ingestion framework in this application.
+
+![](docs/Mindmap.png)
+
+**Example Summary:**
+
+```json
+{
+    "total_profit_loss": -68.46320346320347,
+    "league_breakdown": {
+      "NFL": -90,
+      "NCAAF": 21.5368
+    },
+    "bet_type_breakdown": {
+      "Totals": -92.2727,
+      "Spread": 23.8095
+    }
+  }
+```
+
+## Flow Description:
 
 1. **Client Interaction**: A user uploads a file.
 2. **OCR Analysis**: When a user uploads an image or document, it goes to the EasyOCR Service, which processes the file and extracts important betting information.
@@ -18,10 +43,6 @@ This project aims to analyze betting data using AI-driven microservices, providi
 1. **EasyOCR Python Package**: [GitHub Repository](https://github.com/JaidedAI/EasyOCR) | [PyPI](https://pypi.org/project/easyocr/)
 2. **Ollama**: [Website](https://ollama.com/) | [PyPI](https://pypi.org/project/ollama/)
 3. **AWS DynamoDB Local**: [Docker Hub](https://hub.docker.com/r/amazon/dynamodb-local)
-
-## Project Overview
-
-This project has several microservices, each designed to handle a specific task in the system. All services are packaged using Docker and managed with `docker-compose` for easy setup. Docker ensures consistent environments, simplifying deployment across systems. `docker-compose` makes it easier to manage multiple containers, allowing the services to work together smoothly. This README provides an overview of the system setup, development process, and contribution guidelines for developers and AI enthusiasts interested in improving the project.
 
 ## Getting Started
 
@@ -75,6 +96,8 @@ docker compose up --build
 4. **Data Storage**: Persistent data is handled through the Storage Service (`storage/app.py`), which uses a local DynamoDB instance.
 
 ## Service Overview
+
+![](docs/Overview.png)
 
 ### 1. API Service
 
@@ -162,7 +185,7 @@ The **Storage Service** handles data storage, using a local DynamoDB environment
 
    ```plaintext
    api_service-1 | INFO - Sending parsed data to Storage service
-   storage_service-1 | INFO - Calculated profit/loss for bet 2bd65e6c-e016-41c1-816c-f9f6cba5cf97: 22.73
+   storage_service-1 | INFO - Calculated profit/loss for bet 9ed25738-123f-42cc-9635-dac64a9c73b2: 22.73
    ```
 <p align="center">
     <img src="docs/demo/step1.png" width="800">
