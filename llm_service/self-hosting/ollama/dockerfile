@@ -1,6 +1,6 @@
 FROM ollama/ollama:latest
 
-ENV OLLAMA_KEEP_ALIVE=1hr
+ENV OLLAMA_KEEP_ALIVE=1h
 
 # Expose the Proper Port
 EXPOSE 11434

@@ -190,7 +190,7 @@ def extract_fallback_field(field_name: str, text: str) -> Optional[str]:
     return None
 
 # Function to split context into manageable batches while avoiding splits within betslips
-def split_context_for_batches(text: str, model_name: str = 'gemini-1.5-flash-002', max_chunk_size: int = 1000) -> list:
+def split_context_for_batches(text: str, model_name: str = 'gemini-1.5-flash', max_chunk_size: int = 1000) -> list:
     """
     Uses the Gemini Pro model to split input text into manageable, logical batches while avoiding splits within individual betslips.
 
@@ -253,7 +253,7 @@ def split_context_for_batches(text: str, model_name: str = 'gemini-1.5-flash-002
     return batches
 
 # Function to process each batch using a smaller model (e.g., Gemini Flash)
-def parse_bet_data_with_flash_model(batch: str, model_name: str = 'gemini-1.5-flash-002') -> dict:
+def parse_bet_data_with_flash_model(batch: str, model_name: str = 'gemini-1.5-flash') -> dict:
     """
     Sends a batch to the Gemini Flash model for processing.
 

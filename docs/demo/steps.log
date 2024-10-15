@@ -1,0 +1,22 @@
+api_service-1      | 2024-10-15 20:06:08,376 - app - INFO - Received file: win_example.png
+api_service-1      | 2024-10-15 20:06:08,376 - app - INFO - Sending file to OCR service
+easyocr-1          | 2024-10-15 20:06:08,378 - app - INFO - File win_example.png read successfully.
+easyocr-1          | 2024-10-15 20:06:08,381 - app - INFO - File win_example.png successfully converted to numpy array.
+easyocr-1          | 2024-10-15 20:06:08,521 - app - INFO - Text extraction completed for file win_example.png.
+easyocr-1          | 2024-10-15 20:06:08,521 - app - INFO - Extracted text: Under 62.5 . Totals WON Result Under 62.5 Mississippi at LSU 10/12/24 6.30 PM Stake Odds Payout (inc Stake) 525.00 -110 547.73 Details
+api_service-1      | 2024-10-15 20:06:08,522 - app - INFO - Received response from OCR service
+llm_service-1      | 2024-10-15 20:06:08,524 - INFO - Generating content from model
+easyocr-1          | 2024-10-15 20:06:08,521 - app - INFO - Text extraction time for win_example.png: 0.14 seconds.
+api_service-1      | 2024-10-15 20:06:08,522 - app - INFO - Parsed OCR response into LLMRequestModel
+llm_service-1      | 2024-10-15 20:06:08,524 - INFO - Extracted text: Under 62.5 . Totals WON Result Under 62.5 Mississippi at LSU 10/12/24 6.30 PM Stake Odds Payout (inc Stake) 525.00 -110 547.73 Details
+api_service-1      | 2024-10-15 20:06:08,522 - app - INFO - Sending request to LLM service
+ollama-1           | [GIN] 2024/10/15 - 20:06:22 | 200 | 13.781016465s |      172.19.0.5 | POST     "/api/generate"
+api_service-1      | 2024-10-15 20:06:22,307 - app - INFO - Received response from LLM service
+storage_service-1  | 2024-10-15 20:06:22,310 INFO:Calculated profit/loss for bet 2bd65e6c-e016-41c1-816c-f9f6cba5cf97: 22.72727272727272727272727273
+llm_service-1      | 2024-10-15 20:06:22,306 - INFO - Parsed data: [{'bet_id': None, 'result': 'Under 62.5', 'league': 'NCAAF', 'date': '10/12/24 6:30 PM', 'away_team': 'Mississippi', 'home_team': 'LSU', 'wager_team': None, 'bet_type': 'Totals', 'selection': 'Under 62.5', 'odds': '-110', 'stake': '25.00', 'payout': '47.73', 'outcome': 'WON'}]
+api_service-1      | 2024-10-15 20:06:22,308 - app - INFO - Parsed LLM response into BetDetails models
+api_service-1      | 2024-10-15 20:06:22,308 - app - INFO - Converted BetDetails models to JSON format
+api_service-1      | 2024-10-15 20:06:22,308 - app - INFO - Sending parsed data to Storage service
+storage_service-1  | 2024-10-15 20:06:22,344 INFO:Bet 2bd65e6c-e016-41c1-816c-f9f6cba5cf97 Processed: Under 62.5 - Totals - WON - 22.72727272727272727272727273
+api_service-1      | 2024-10-15 20:06:22,365 - app - INFO - Successfully stored bets data
+api_service-1      | 2024-10-15 20:06:22,365 - root - INFO - Processing complete in: 13.989617347717285 seconds

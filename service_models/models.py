@@ -27,26 +27,38 @@ class BetType(str, Enum):
     FUTURE = 'Future'
     OTHER = 'Other'
 
-class BetDetails(BaseModel):
-    user_id: str = "Nate"
-    bet_id: Optional[str] = Field(default_factory=lambda: str(uuid.uuid4()))  # Generate a unique bet_id
-    upload_timestamp: Optional[str] = Field(default_factory=lambda: str(datetime.utcnow()))
+class BetExtractionDetails(BaseModel):
+    bet_id: Optional[str] = None
+    result: Optional[str] = None
     league: Optional[str] = None
-    season: Optional[int] = None
     date: Optional[str] = None
-    game_id: Optional[str] = None
     away_team: Optional[str] = None
     home_team: Optional[str] = None
     wager_team: Optional[str] = None
     bet_type: Optional[str] = None
     selection: Optional[str] = None
     odds: Optional[str] = None
-    risk: Optional[str] = None
-    to_win: Optional[str] = None
+    stake: Optional[str] = None
     payout: Optional[str] = None
     outcome: Optional[str] = Field(default=BetOutcome.WON)
+
+    @classmethod
+    def validate(cls, value):
+        if value.get('bet_id') is None:
+            value['bet_id'] = str(uuid.uuid4())
+        return super().validate(value)
+
+class BetDetails(BetExtractionDetails):
+    bet_id: str = Field(default_factory=lambda: str(uuid.uuid4()))  # Generate a unique bet_id
+    user_id: str = "Nate"
+    upload_timestamp: Optional[str] = Field(default_factory=lambda: str(datetime.utcnow()))
     profit_loss: Optional[Decimal] = None
 
+    @classmethod
+    def validate(cls, value):
+        if value.get('bet_id') is None:
+            value['bet_id'] = str(uuid.uuid4())
+        return super().validate(value)
     
 class UserDetails(BaseModel):
     user_id: str

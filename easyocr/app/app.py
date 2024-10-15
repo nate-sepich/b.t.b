@@ -12,7 +12,7 @@ app = FastAPI()
 reader = easyocr.Reader(['en'])
 
 # Initialize logging to standard output
-logging.basicConfig(level=logging.INFO, handlers=[logging.StreamHandler()])
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 class OCRResponse(BaseModel):

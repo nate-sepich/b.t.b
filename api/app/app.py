@@ -35,8 +35,21 @@ def parse_and_validate_llm_response(response):
         betsRequest = []
         for bet in response_json:
             try:
+                # Merge risk, wager, or stake keys into one key called risk
+                stake_value = bet.pop('stake', None) or bet.pop('risk', None) or bet.pop('wager', None)
+                if stake_value is not None:
+                    bet['stake'] = stake_value
+                # Merge risk, wager, or stake keys into one key called risk
+                to_win_value = bet.pop('to_win', None) or bet.pop('payout', None)
+                if to_win_value is not None:
+                    bet['to_win'] = to_win_value
+                
                 bet.pop('user_id', None)  # Remove user_id if present
-                betsRequest.append(BetDetails(**{**bet, 'outcome': bet.get('outcome', 'WON')},user_id='Nate'))
+                bet_id = bet.pop('bet_id', None)  # Remove bet_id if present
+                if bet_id:
+                    bet['bet_id'] = bet_id
+                betsRequest.append(BetDetails(**{**bet, 'outcome': bet.get('outcome', 'WON')}, user_id='X'))
+
             except Exception as e:
                 logger.warning(f"Skipping invalid bet data: {str(e)}")
                 with open('failed_bets.log', 'a') as log_file:
@@ -51,10 +64,11 @@ def parse_and_validate_llm_response(response):
 # Image Upload and OCR Processing
 @app.post("/upload/")
 async def upload_image(file: UploadFile = File(...)):
+    start_time = time.time()
     logger.info(f"Received file: {file.filename}")
     
     # File size limit check (e.g., 5MB)
-    if file.spool_max_size > 5 * 1024 * 1024:
+    if file.size > 5 * 1024 * 1024:
         logger.error("File size exceeds limit (5MB)")
         raise HTTPException(status_code=413, detail="File size exceeds limit (5MB)")
     
@@ -105,6 +119,7 @@ async def upload_image(file: UploadFile = File(...)):
         # Convert the list of BetDetails objects to a list of dictionaries
         betsRequestDicts = [bet.dict() for bet in betsRequest]
         betsRequestJson = json.dumps(betsRequestDicts, default=str)
+        
         logger.info("Converted BetDetails models to JSON format")
 
         # Send the parsed data to the Storage service
@@ -119,119 +134,8 @@ async def upload_image(file: UploadFile = File(...)):
     except requests.exceptions.RequestException as e:
         logger.error(f"Error in Bets service: {str(e)}")
         return {"error": f"Error in Bets service: {str(e)}"}
-
-    return response.json()
-
-# Betting Data Text Ingestion for ESPN Exports
-@app.post("/imports/espn/")
-async def parse_espn_bet_text(bet_data: str):
-    logger.info("Received ESPN bet data for processing")
-    try:
-        # Parse the extracted text into the Pydantic object for the /llm call
-        llmRequest = LLMRequestModel(extracted_text=bet_data)
-        logger.info("Parsed bet data into LLMRequestModel")
-    except Exception as e:
-        logger.error(f"Error parsing bet data: {str(e)}")
-        return {"error": f"Error parsing bet data: {str(e)}"}
-
-    try:
-        # Send the request to the LLM service
-        logger.info("Sending request to LLM service")
-        response = retry_request(lambda: requests.post(
-            "http://llm_service:9002/llm",
-            data=llmRequest.json()
-        ))
-        response.raise_for_status()
-        logger.info("Received response from LLM service")
-    except requests.exceptions.RequestException as e:
-        logger.error(f"Error in LLM service: {str(e)}")
-        return {"error": f"Error in LLM service: {str(e)}"}
-
-    try:
-        # Parse and validate the LLM response
-        betsRequest = parse_and_validate_llm_response(response)
-    except Exception as e:
-        return {"error": str(e)}
-
-    try:
-        # Convert the list of BetDetails objects to a list of dictionaries
-        betsRequestDicts = [bet.dict() for bet in betsRequest]
-        betsRequestJson = json.dumps(betsRequestDicts, default=str)
-        logger.info("Converted BetDetails models to JSON format")
-
-        # Send the parsed data to the Storage service
-        logger.info("Sending parsed data to Storage service")
-        response = retry_request(lambda: requests.post(
-            "http://storage_service:9004/bets",
-            data=betsRequestJson,
-            headers={'Content-Type': 'application/json'}
-        ))
-        response.raise_for_status()
-        logger.info("Successfully stored bets data")
-    except requests.exceptions.RequestException as e:
-        logger.error(f"Error in Bets service: {str(e)}")
-        return {"error": f"Error in Bets service: {str(e)}"}
-
-    return response.json()
-
-# Betting Data Text Ingestion for MGM Exports
-@app.post("/imports/mgm/")
-async def parse_mgm_bet_pdf(file: UploadFile = File(...)):
-    logger.info(f"Received MGM bet PDF file: {file.filename}")
-    image_bytes = await file.read()
     
-    try:
-        bet_data = mgm_ingestion.extract_text_pypdf2(image_bytes)
-        logger.info(f"Extracted bet data from PDF: {bet_data}")
-    except Exception as e:
-        logger.error(f"Error extracting text from PDF: {str(e)}")
-        return {"error": f"Error extracting text from PDF: {str(e)}"}
-    
-    try:
-        # Parse the extracted text into the Pydantic object for the /llm call
-        llmRequest = LLMRequestModel(extracted_text=bet_data)
-        logger.info("Parsed bet data into LLMRequestModel")
-    except Exception as e:
-        logger.error(f"Error parsing bet data: {str(e)}")
-        return {"error": f"Error parsing bet data: {str(e)}"}
-
-    try:
-        # Send the request to the LLM service
-        logger.info("Sending request to LLM service")
-        response = retry_request(lambda: requests.post(
-            "http://llm_service:9002/llm-extraction/mgm",
-            data=llmRequest.json()
-        ))
-        response.raise_for_status()
-        logger.info("Received response from LLM service")
-    except requests.exceptions.RequestException as e:
-        logger.error(f"Error in LLM service: {str(e)}")
-        return {"error": f"Error in LLM service: {str(e)}"}
-
-    try:
-        # Parse and validate the LLM response
-        betsRequest = parse_and_validate_llm_response(response)
-    except Exception as e:
-        return {"error": str(e)}
-
-    try:
-        # Convert the list of BetDetails objects to a list of dictionaries
-        betsRequestDicts = [bet.dict() for bet in betsRequest]
-        betsRequestJson = json.dumps(betsRequestDicts, default=str)
-        logger.info("Converted BetDetails models to JSON format")
-
-        # Send the parsed data to the Storage service
-        logger.info("Sending parsed data to Storage service")
-        response = retry_request(lambda: requests.post(
-            "http://storage_service:9004/bets",
-            data=betsRequestJson,
-            headers={'Content-Type': 'application/json'}
-        ))
-        response.raise_for_status()
-        logger.info("Successfully stored bets data")
-    except requests.exceptions.RequestException as e:
-        logger.error(f"Error in Bets service: {str(e)}")
-        return {"error": f"Error in Bets service: {str(e)}"}
+    logging.info("Processing complete in: %s seconds" % (time.time() - start_time))
 
     return response.json()
 

@@ -1,4 +1,5 @@
 from decimal import Decimal
+import decimal
 import logging
 import boto3
 from boto3.dynamodb.types import TypeSerializer
@@ -15,6 +16,9 @@ dynamodb_resource = BTBDynamoDB().dynamodb_resource
 
 bets_table = dynamodb_resource.Table('BetsTable')
 users_table = dynamodb_resource.Table('UsersTable')
+
+# Configure logging to output to standard output
+logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s:%(message)s')
 
 # Helper Functions
 def convert_floats_to_decimals(item):
@@ -78,24 +82,51 @@ def get_bets_summary(bets: list) -> dict:
     return summary
 
 def calculate_profit_loss(bet_details: BetDetails) -> Decimal:
-    bet_amount = Decimal(str(bet_details.risk))
-    odds = bet_details.odds
-    outcome = bet_details.outcome
+    """
+    Calculate the profit or loss for a bet based on American odds.
+    
+    Parameters:
+    - bet_details (BetDetails): Details of the bet including odds, stake, and outcome.
+    
+    Returns:
+    - Decimal: The profit or loss calculated based on the bet details.
+    """
+    def parse_decimal(value):
+        """
+        Parse a value into a Decimal, removing any currency symbols or commas.
+        """
+        try:
+            return Decimal(str(value).replace('$', '').replace(',', ''))
+        except (ValueError, decimal.InvalidOperation):
+            logging.error(f"Invalid decimal value: {value}")
+            return Decimal('0.0')
 
-    if outcome.upper() == 'WON':
-        if odds.startswith('-'):
-            profit = bet_amount * (Decimal('100') / Decimal(odds.replace('-', '')))
-        elif odds.startswith('+'):
-            if bet_details.to_win:
-                profit = Decimal(str(bet_details.to_win)) - bet_amount
+    # Extract the stake and odds from the bet details
+    stake = parse_decimal(bet_details.stake)
+    odds = bet_details.odds
+    outcome = bet_details.outcome.upper()
+
+    # Calculate profit based on American odds
+    if outcome == 'WON':
+        try:
+            # For negative American odds (e.g., -120), the formula is stake * (100 / |odds|)
+            if odds.startswith('-'):
+                profit = stake * (Decimal('100') / Decimal(odds.replace('-', '')))
+            # For positive American odds (e.g., +120), the formula is stake * (odds / 100)
+            elif odds.startswith('+'):
+                profit = stake * (Decimal(odds.replace('+', '')) / Decimal('100'))
             else:
-                profit = bet_amount * (Decimal(odds.replace('+', '')) / Decimal('100'))
-        else:
+                profit = Decimal('0.0')
+        except (ValueError, decimal.InvalidOperation):
+            logging.error(f"Invalid odds: {odds}")
             profit = Decimal('0.0')
-    elif outcome.upper() == 'LOST':
-        profit = -bet_amount
+    elif outcome == 'LOST':
+        # If the bet is lost, the profit is negative the stake (loss)
+        profit = -stake
     else:
-        profit = Decimal('0.0')  # For 'PUSH' or other outcomes
+        # For other outcomes like 'PUSH', no profit or loss
+        profit = Decimal('0.0')
+
     logging.info(f"Calculated profit/loss for bet {bet_details.bet_id}: {profit}")
     return profit
 
@@ -127,10 +158,6 @@ def add_bets(bet_details_list: List[BetDetails]):
     bet_ids = set()
     with bets_table.batch_writer() as batch:
         for bet_details in bet_details_list:
-            if bet_details.bet_id in bet_ids:
-                logging.warning(f"Duplicate bet_id found: {bet_details.bet_id}. Skipping this bet.")
-                failed_bets.append(bet_details.bet_id)
-                continue
             try:
                 # Calculate profit/loss
                 profit_loss = calculate_profit_loss(bet_details)
@@ -143,6 +170,7 @@ def add_bets(bet_details_list: List[BetDetails]):
                 batch.put_item(Item=bet_details_dict)
                 bet_ids.add(bet_details.bet_id)
                 succeeded_bets.append(bet_details.bet_id)
+                logging.info(f"Bet {bet_details.bet_id} Processed: {bet_details.selection} - {bet_details.bet_type} - {bet_details.outcome} - {bet_details.profit_loss}")
             except Exception as e:
                 logging.error(f"Error processing bet {bet_details.bet_id}: {e}")
                 failed_bets.append(bet_details.bet_id)
@@ -185,11 +213,12 @@ def create_user(user_details: UserDetails):
     return {"message": "User created successfully", "user_id": user_details.user_id}
 
 try:
-    user_details = UserDetails(user_id="Nate", bankroll=Decimal('170.00'))
+    user_details = UserDetails(user_id="X", bankroll=Decimal('100.00'))
     create_user(user_details)
 except HTTPException as e:
     if e.status_code == 400 and "User already exists" in e.detail:
-        print("User already exists, continuing with application startup.")
+        # print("User already exists, continuing with application startup.")
+        pass
     else:
         raise e
 

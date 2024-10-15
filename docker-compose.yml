@@ -23,6 +23,8 @@ services:
       dockerfile: llm_service/dockerfile
     ports:
       - "9002:9002"
+    environment:
+      - BTB_OLLAMA_MODEL=mistral
     networks:
       - btb-network
 

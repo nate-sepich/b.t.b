@@ -34,13 +34,14 @@ RUN cd "$service_home" \
 # Expose port 9000
 EXPOSE 9000
 
+# Install Python packages
+RUN pip3 install --upgrade pip
+COPY easyocr/app/requirements.txt .
+RUN pip3 install -r requirements.txt
+
 # Copy Source Code
 COPY easyocr/app /app
 WORKDIR /app
-
-# Install Python packages
-RUN pip3 install --upgrade pip
-RUN pip3 install -r requirements.txt
 
 # Pre-download EasyOCR models to cache them in the Docker image
 # Detection/Recognition Models
