@@ -221,6 +221,8 @@ The **Storage Service** handles data storage, using a local DynamoDB environment
 
 ### Advantages of GPU Acceleration
 
+Using an NVIDIA GeForce GTX 1660 Ti, the processing time is significantly reduced, showcasing the benefits of GPU acceleration over traditional CPU-based processing. Superior GPU models would be expected see even greater than 9.5x improvement.
+
 - **Efficiency**: Faster processing allows for more tasks to be handled in a shorter time frame. The drastic difference in processing times means that the system can manage more user requests concurrently, without the need to significantly scale up CPU resources.
 
 ### Scaling Example
