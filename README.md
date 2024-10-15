@@ -85,7 +85,9 @@ docker compose up --build
 
 5. **Access the API Service**:
 
-   - By default, the API Service will be available at [http://localhost:9001](http://localhost:9001/docs).
+   - By default, the upload API Service will be available at [http://localhost:9001](http://localhost:9001/docs).
+   - The storage service can be accessed via: http://localhost:9004/docs, summaries on a per user basis can be generated.
+   - The application does not currently have User management. The default user is "X" for all requests.
    - You can use FastAPI's Swagger UI to test the endpoints directly. The Swagger UI is available at [http://localhost:9001/docs](http://localhost:9001/docs). For more information, refer to the [FastAPI documentation](https://fastapi.tiangolo.com/).
 
 ## System Flow
@@ -95,7 +97,7 @@ docker compose up --build
 3. **LLM Interaction**: For requests involving language model processing or content generation, the LLM Service (`llm_service/app.py`) is used. The Gemini client manages communication with Google's language model.
 4. **Data Storage**: Persistent data is handled through the Storage Service (`storage/app.py`), which uses a local DynamoDB instance.
 
-## Service Overview
+## Application Overview
 
 <p align="center">
     <img src="docs/Service_Overview.png" width="800">

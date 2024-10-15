@@ -35,4 +35,4 @@ def generate_content_from_model(prompt: str):
 
 
 if __name__ == "__main__":
-    generate_limerick()
+    generate_content_from_model("hello")
