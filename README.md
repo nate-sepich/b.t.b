@@ -221,14 +221,13 @@ The **Storage Service** handles data storage, using a local DynamoDB environment
 
 ### Advantages of GPU Acceleration
 
-- **Speed**: The GPU significantly reduces the processing time for both OCR and LLM tasks. In some cases, the GPU is able to provide an order of magnitude reduction in processing times. For example, the LLM processing time on the CPU takes over 2 minutes, whereas on the GPU it takes just over 13 seconds. This is an almost tenfold reduction, which highlights the powerful benefits of GPU acceleration for time-sensitive operations.
 - **Efficiency**: Faster processing allows for more tasks to be handled in a shorter time frame. The drastic difference in processing times means that the system can manage more user requests concurrently, without the need to significantly scale up CPU resources.
 
 ### Scaling Example
 
-GPUs, and eventually quantum computers, fundamentally change computing. GPUs excel at parallel processing, which is especially beneficial for deep learning models that require simultaneous computation across multiple data points. This aspect is often misunderstood. To illustrate the impact, consider the following:
+GPUs excel at parallel processing, which is especially beneficial for deep learning models that require simultaneous computation across multiple data points. To illustrate the impact, consider the following:
 
-If the system needs to process 1,000 user requests per day, and each request involves OCR and LLM processing:
+If the system needs to process 1,000 user requests per day, and each request involves OCR and LLM processing with my current experimental setup:
 
 - **CPU Only**: With an average total processing time of 127 seconds per request, it would take approximately 35.3 hours to handle 1,000 requests. This means the system would not be able to keep up, as there are only 24 hours in a day.
 - **GPU Accelerated**: With GPU acceleration reducing the total processing time to 13.39 seconds per request, it would take only about 3.7 hours to process the same 1,000 requests. This allows for significant scaling and the ability to handle even higher user loads without compromising on performance.
