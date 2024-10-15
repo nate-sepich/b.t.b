@@ -97,9 +97,9 @@ docker compose up --build
 
 ## Service Overview
 
-
-![](docs/Overview.png)
-
+<p align="center">
+    <img src="docs/Overview.png" width="800">
+</p>
 
 ### 1. API Service
 
